@@ -57,4 +57,18 @@ public class GameManagerTests
         // Assert
         Assert.Equal(_gameManager.ComputerPlayer, roundWinner);
     }
+    
+    [Fact]
+    public void ShouldReturnsCurrentScoresForEachPlayer_WhenGetCurrentScores()
+    {
+        
+        _gameManager.DealCards();
+        _gameManager.GetWinnerForCurrentRound();
+        // Act
+        var scores = _gameManager.GetCurrentScores();
+
+        // Assert
+        Assert.Equal(1, scores.PlayerScore);
+        Assert.Equal(0, scores.ComputerScore);
+    }
 }
