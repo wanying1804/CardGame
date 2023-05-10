@@ -56,8 +56,9 @@ public class Deck : IDeck
         InitializeDeck();
     }
 
-    public int LeftCardsCount()
+    public void ResetAndShuffle()
     {
         throw new NotImplementedException();
     }
+    
 }
