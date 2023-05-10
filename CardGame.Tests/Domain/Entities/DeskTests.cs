@@ -64,6 +64,22 @@ public class DeckTests
         Assert.NotNull(dealtCard);
         Assert.Equal(firstCard, dealtCard);
     }
+    
+    [Fact]
+    public void ShouldRestoresFiftyTwoCards_WhenResetTheDeck()
+    {
+        // Arrange
+        Deck deck = new Deck();
+        
+        deck.DealCard();
+        Assert.Equal(51, deck.Cards.Count);
+
+        // Act
+        deck.Reset();
+
+        // Assert
+        Assert.Equal(52, deck.Cards.Count);
+    }
 
 
 }
