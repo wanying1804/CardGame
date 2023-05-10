@@ -1,4 +1,6 @@
 ﻿using CardGame.Application.CardComparisonGame;
+using CardGame.Domain.Entities;
+using CardGame.Domain.Enums;
 using CardGame.Domain.Interfaces;
 using Moq;
 
@@ -11,7 +13,13 @@ public class GameManagerTests
 
     public GameManagerTests()
     {
-        _deckMock = new Mock<IDeck>();;
+        _deckMock = new Mock<IDeck>();
+        var sequence = new MockSequence();
+        
+        _deckMock.SetupSequence(d => d.DealCard())
+            .Returns(new Card(Suit.Hearts, 2))
+            .Returns(new Card(Suit.Diamonds, 5));
+        
         _gameManager = new GameManager(_deckMock.Object);
     }
     
@@ -26,15 +34,17 @@ public class GameManagerTests
     }
     
     [Fact]
-    public void DealCards_ShouldReturnDictionaryWithTwoCards()
+    public void ShouldReturnDictionaryWithTwoCards_WhenDealCards()
     {
         // Act
+
         var dealtCards = _gameManager.DealCards();
 
         // Assert
         Assert.Equal(2, dealtCards.Count);
-        Assert.Contains(_gameManager.HumanPlayer, dealtCards.Keys);
-        Assert.Contains(_gameManager.ComputerPlayer, dealtCards.Keys);
-        Assert.All(dealtCards.Values, card => Assert.NotNull(card));
+        Assert.Equal(Suit.Hearts, dealtCards[_gameManager.HumanPlayer].Suit);
+        Assert.Equal(2, dealtCards[_gameManager.HumanPlayer].Value);
+        Assert.Equal(Suit.Diamonds, dealtCards[_gameManager.ComputerPlayer].Suit);
+        Assert.Equal(5, dealtCards[_gameManager.ComputerPlayer].Value);
     }
 }
