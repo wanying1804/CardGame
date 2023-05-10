@@ -74,4 +74,24 @@ public class GameManagerTests
         Assert.Equal(0, scores.PlayerScore);
         Assert.Equal(1, scores.ComputerScore);
     }
+    
+    [Fact]
+    public void ResetGame_ResetsDeckAndScores()
+    {
+        Setup();
+        _gameManager.DealCards();
+        _gameManager.GetWinnerForCurrentRound();
+        var scoresBefore = _gameManager.GetCurrentScores();
+        Assert.Equal(1, scoresBefore.ComputerScore);
+        
+        // Act
+        _gameManager.ResetGame();
+
+        // Assert
+        _deckMock.Verify(d => d.Reset(), Times.Once);
+        var scores = _gameManager.GetCurrentScores();
+        Assert.Equal(0, scores.PlayerScore);
+        Assert.Equal(0, scores.ComputerScore);
+    }
+
 }
