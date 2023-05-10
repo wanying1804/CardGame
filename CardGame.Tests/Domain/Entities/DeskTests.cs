@@ -80,6 +80,25 @@ public class DeckTests
         // Assert
         Assert.Equal(52, deck.Cards.Count);
     }
+    
+    [Fact] 
+    public void ShouldRestoresAndShuffleTheCards_WhenResetAndShuffleTheDeck()
+    {
+        // Arrange
+        Deck deck = new Deck();
+        
+        Queue<Card> originalCards = new Queue<Card>(deck.Cards);
+        
+        deck.DealCard();
+        Assert.Equal(51, deck.Cards.Count);
+
+        // Act
+        deck.ResetAndShuffle();
+
+        // Assert
+        Assert.Equal(52, deck.Cards.Count);
+        Assert.NotEqual(originalCards, deck.Cards);
+    }
 
 
 }
