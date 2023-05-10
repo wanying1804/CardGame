@@ -24,7 +24,7 @@ public class GameManager: IGameManager
 
     public void ShuffleDeck()
     {
-        throw new NotImplementedException();
+        _deck.Shuffle();
     }
 
     public void ResetGame()
