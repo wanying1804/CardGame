@@ -55,6 +55,30 @@ public class GameManager: IGameManager
 
     public Player? GetWinnerForCurrentRound()
     {
-        throw new NotImplementedException();
+        if (!_currentDealtCards.ContainsKey(HumanPlayer) || !_currentDealtCards.ContainsKey(ComputerPlayer))
+        {
+            throw new InvalidOperationException("No dealt cards, please deal cards first");
+        }
+
+        Card humanCard = _currentDealtCards[HumanPlayer];
+        Card computerCard = _currentDealtCards[ComputerPlayer];
+
+        int roundResult = humanCard.CompareTo(computerCard);
+        _currentDealtCards = new Dictionary<Player, Card>();
+
+        if (roundResult > 0)
+        {
+            _playerScore++;
+            return HumanPlayer;
+        }
+        else if (roundResult < 0)
+        {
+            _computerScore++;
+            return ComputerPlayer;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
