@@ -1,22 +1,23 @@
-﻿using CardGame.Domain.Enums;
+﻿using CardGame.Domain.Entities;
+using CardGame.Domain.Enums;
 using CardGame.Domain.Interfaces;
 
-namespace CardGame.Domain.Entities;
+namespace CardGame.Application.CardComparisonGame;
 
 public class GameManager: IGameManager
 {
-    private readonly Player _humanPlayer;
-    private readonly Player _computerPlayer;
+    private readonly IPlayer _humanPlayer;
+    private readonly IPlayer _computerPlayer;
     private int _playerScore;
     private int _computerScore;
-    private readonly Deck _deck;
+    private readonly IDeck _deck;
 
 
-    public GameManager()
+    public GameManager(IDeck deck)
     {
         _humanPlayer = new Player(PlayerType.Human);
         _computerPlayer = new Player(PlayerType.Computer);
-        _deck = new Deck();
+        _deck = deck;
         _playerScore = 0;
         _computerScore = 0;
     }
