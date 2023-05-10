@@ -6,8 +6,8 @@ namespace CardGame.Application.CardComparisonGame;
 
 public class GameManager: IGameManager
 {
-    public IPlayer HumanPlayer { get; init; }
-    public IPlayer ComputerPlayer { get; init; }
+    public Player HumanPlayer { get; init; }
+    public Player ComputerPlayer { get; init; }
     private int _playerScore;
     private int _computerScore;
     private readonly IDeck _deck;
@@ -39,7 +39,10 @@ public class GameManager: IGameManager
 
     public IDictionary<Player, Card> DealCards()
     {
-        throw new NotImplementedException();
+        IDictionary<Player, Card> dealtCards = new Dictionary<Player, Card>();
+        dealtCards[HumanPlayer] = _deck.DealCard();
+        dealtCards[ComputerPlayer] = _deck.DealCard();
+        return dealtCards;
     }
 
     public Player GetWinner()
