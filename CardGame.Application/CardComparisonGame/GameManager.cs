@@ -36,7 +36,7 @@ public class GameManager: IGameManager
 
     public Scores GetCurrentScores()
     {
-        throw new NotImplementedException();
+        return new Scores(_playerScore, _computerScore);
     }
 
     public IDictionary<Player, Card> DealCards()

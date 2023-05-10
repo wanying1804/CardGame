@@ -14,13 +14,14 @@ public class GameManagerTests
     public GameManagerTests()
     {
         _deckMock = new Mock<IDeck>();
-        var sequence = new MockSequence();
-        
+        _gameManager = new GameManager(_deckMock.Object);
+    }
+
+    private void Setup()
+    {
         _deckMock.SetupSequence(d => d.DealCard())
             .Returns(new Card(Suit.Hearts, 2))
             .Returns(new Card(Suit.Diamonds, 5));
-        
-        _gameManager = new GameManager(_deckMock.Object);
     }
     
     [Fact]
@@ -36,6 +37,7 @@ public class GameManagerTests
     [Fact]
     public void ShouldReturnDictionaryWithTwoCards_WhenDealCards()
     {
+        Setup();
         // Act
         var dealtCards = _gameManager.DealCards();
 
@@ -50,6 +52,7 @@ public class GameManagerTests
     [Fact]
     public void ShouldReturnsRoundWinner_WhenRunGetWinnerForCurrentRoundMethod()
     {
+        Setup();
         // Act
         _gameManager.DealCards();
         var roundWinner = _gameManager.GetWinnerForCurrentRound();
@@ -61,14 +64,14 @@ public class GameManagerTests
     [Fact]
     public void ShouldReturnsCurrentScoresForEachPlayer_WhenGetCurrentScores()
     {
-        
+        Setup();
         _gameManager.DealCards();
         _gameManager.GetWinnerForCurrentRound();
         // Act
         var scores = _gameManager.GetCurrentScores();
 
         // Assert
-        Assert.Equal(1, scores.PlayerScore);
-        Assert.Equal(0, scores.ComputerScore);
+        Assert.Equal(0, scores.PlayerScore);
+        Assert.Equal(1, scores.ComputerScore);
     }
 }
