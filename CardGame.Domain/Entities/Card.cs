@@ -4,12 +4,12 @@ namespace CardGame.Domain.Entities;
 
 public class Card: IComparable<Card>
 {
-    private int _value;
+    private readonly int _value;
     public Suit Suit { get;}
     public int Value
     {
-        get { return _value; }
-        set
+        get => _value;
+        init
         {
             if (value >= 1 && value <= 13)
                 _value = value;

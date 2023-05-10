@@ -1,14 +1,27 @@
-﻿using CardGame.Domain.Interfaces;
+﻿using CardGame.Domain.Enums;
+using CardGame.Domain.Interfaces;
 
 namespace CardGame.Domain.Entities;
 
-public class Deck: IDeck
+public class Deck : IDeck
 {
-    public Queue<Card> _cards;
+    public Queue<Card> Cards { get; } = new();
 
     public Deck()
     {
-        _cards = new Queue<Card>();
+        InitializeDeck();
+    }
+    
+    private void InitializeDeck()
+    {
+        foreach (Suit suit in Enum.GetValues(typeof(Suit)))
+        {
+            for (int value = 1; value <= 13; value++)
+            {
+                Card card = new Card(suit, value);
+                Cards.Enqueue(card);
+            }
+        }
     }
 
     public void Shuffle()
