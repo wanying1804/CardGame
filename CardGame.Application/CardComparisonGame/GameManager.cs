@@ -31,7 +31,9 @@ public class GameManager: IGameManager
 
     public void ResetGame()
     {
-        throw new NotImplementedException();
+        _deck.Reset();
+        _playerScore = 0;
+        _computerScore = 0;
     }
 
     public Scores GetCurrentScores()
