@@ -6,8 +6,8 @@ namespace CardGame.Application.CardComparisonGame;
 
 public class GameManager: IGameManager
 {
-    private readonly IPlayer _humanPlayer;
-    private readonly IPlayer _computerPlayer;
+    public IPlayer HumanPlayer { get; init; }
+    public IPlayer ComputerPlayer { get; init; }
     private int _playerScore;
     private int _computerScore;
     private readonly IDeck _deck;
@@ -15,8 +15,8 @@ public class GameManager: IGameManager
 
     public GameManager(IDeck deck)
     {
-        _humanPlayer = new Player(PlayerType.Human);
-        _computerPlayer = new Player(PlayerType.Computer);
+        HumanPlayer = new Player(PlayerType.Human);
+        ComputerPlayer = new Player(PlayerType.Computer);
         _deck = deck;
         _playerScore = 0;
         _computerScore = 0;

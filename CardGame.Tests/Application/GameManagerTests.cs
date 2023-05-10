@@ -24,4 +24,17 @@ public class GameManagerTests
         // Assert
         _deckMock.Verify(d => d.Shuffle(), Times.Once);
     }
+    
+    [Fact]
+    public void DealCards_ShouldReturnDictionaryWithTwoCards()
+    {
+        // Act
+        var dealtCards = _gameManager.DealCards();
+
+        // Assert
+        Assert.Equal(2, dealtCards.Count);
+        Assert.Contains(_gameManager.HumanPlayer, dealtCards.Keys);
+        Assert.Contains(_gameManager.ComputerPlayer, dealtCards.Keys);
+        Assert.All(dealtCards.Values, card => Assert.NotNull(card));
+    }
 }
