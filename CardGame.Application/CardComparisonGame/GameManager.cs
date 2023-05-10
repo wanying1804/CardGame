@@ -52,7 +52,11 @@ public class GameManager: IGameManager
 
     public Player? GetWinnerForAllRounds()
     {
-        throw new NotImplementedException();
+        if (_playerScore > _computerScore)
+            return HumanPlayer;
+        if (_computerScore > _playerScore)
+            return ComputerPlayer;
+        return null; // Tie
     }
 
     public Player? GetWinnerForCurrentRound()
