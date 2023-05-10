@@ -58,7 +58,8 @@ public class Deck : IDeck
 
     public void ResetAndShuffle()
     {
-        throw new NotImplementedException();
+        Reset();
+        Shuffle();
     }
     
 }
