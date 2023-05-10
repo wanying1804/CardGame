@@ -5,7 +5,7 @@ namespace CardGame.Tests.Domain.Enums;
 public class SuitTests
 {
     [Fact]
-    public void ShouldReturnExpectedResult_WhenCompareToTwoSuits()
+    public void ShouldReturnExpectedResult_WhenCompareWithTwoSuits()
     {
         var spades = Suit.Spades;
         var hearts = Suit.Hearts;
