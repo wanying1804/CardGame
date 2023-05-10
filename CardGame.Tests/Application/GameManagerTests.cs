@@ -37,7 +37,6 @@ public class GameManagerTests
     public void ShouldReturnDictionaryWithTwoCards_WhenDealCards()
     {
         // Act
-
         var dealtCards = _gameManager.DealCards();
 
         // Assert
