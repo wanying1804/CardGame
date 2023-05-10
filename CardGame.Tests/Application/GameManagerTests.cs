@@ -24,6 +24,18 @@ public class GameManagerTests
             .Returns(new Card(Suit.Diamonds, 5));
     }
     
+    private void SetupForMultipleRounds()
+    {
+        _deckMock.SetupSequence(d => d.DealCard())
+            .Returns(new Card(Suit.Hearts, 2))
+            .Returns(new Card(Suit.Diamonds, 5))
+            .Returns(new Card(Suit.Spades, 10))
+            .Returns(new Card(Suit.Diamonds, 3))
+            .Returns(new Card(Suit.Clubs, 6))
+            .Returns(new Card(Suit.Hearts, 5));
+    }
+
+    
     [Fact]
     public void ShouldCallShuffleMethod_WhenShuffleTheDeck()
     {
@@ -92,6 +104,27 @@ public class GameManagerTests
         var scores = _gameManager.GetCurrentScores();
         Assert.Equal(0, scores.PlayerScore);
         Assert.Equal(0, scores.ComputerScore);
+    }
+    
+    [Fact]
+    public void ShouldReturnTheCorrectWinner_WhenGetWinnerForAllRound()
+    {
+        SetupForMultipleRounds();
+        _gameManager.DealCards();
+        _gameManager.GetWinnerForCurrentRound();
+        _gameManager.DealCards();
+        _gameManager.GetWinnerForCurrentRound();
+        _gameManager.DealCards();
+        _gameManager.GetWinnerForCurrentRound();
+
+        // Act
+        var winner = _gameManager.GetWinnerForAllRounds();
+        var scores = _gameManager.GetCurrentScores();
+        // Assert
+        
+        Assert.Equal(2, scores.PlayerScore);
+        Assert.Equal(1, scores.ComputerScore);
+        Assert.Equal(_gameManager.HumanPlayer, winner);
     }
 
 }

@@ -8,6 +8,6 @@ public interface IGameManager
     void ResetGame();
     Scores GetCurrentScores();
     IDictionary<Player, Card> DealCards();
-    Player? GetWinnerForAllRound();
+    Player? GetWinnerForAllRounds();
     Player? GetWinnerForCurrentRound();
 }

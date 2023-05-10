@@ -50,7 +50,7 @@ public class GameManager: IGameManager
         return dealtCards;
     }
 
-    public Player? GetWinnerForAllRound()
+    public Player? GetWinnerForAllRounds()
     {
         throw new NotImplementedException();
     }
