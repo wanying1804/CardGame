@@ -5,7 +5,7 @@ namespace CardGame.Domain.Entities;
 
 public class Deck : IDeck
 {
-    public Queue<Card> Cards { get; } = new();
+    public Queue<Card> Cards { get; private set; } = new();
 
     public Deck()
     {
@@ -26,7 +26,18 @@ public class Deck : IDeck
 
     public void Shuffle()
     {
-        throw new NotImplementedException();
+        var cardList = new List<Card>(Cards);
+
+        var random = new Random();
+        var n = cardList.Count;
+        while (n > 1)
+        {
+            n--;
+            var k = random.Next(n + 1);
+            (cardList[k], cardList[n]) = (cardList[n], cardList[k]);
+        }
+
+        Cards = new Queue<Card>(cardList);
     }
 
     public Card DealCard()
