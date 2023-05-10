@@ -53,7 +53,7 @@ public class Deck : IDeck
 
     public void Reset()
     {
-        throw new NotImplementedException();
+        InitializeDeck();
     }
 
     public int LeftCardsCount()
