@@ -46,4 +46,15 @@ public class GameManagerTests
         Assert.Equal(Suit.Diamonds, dealtCards[_gameManager.ComputerPlayer].Suit);
         Assert.Equal(5, dealtCards[_gameManager.ComputerPlayer].Value);
     }
+    
+    [Fact]
+    public void ShouldReturnsRoundWinner_WhenRunGetWinnerForCurrentRoundMethod()
+    {
+        // Act
+        _gameManager.DealCards();
+        var roundWinner = _gameManager.GetWinnerForCurrentRound();
+
+        // Assert
+        Assert.Equal(_gameManager.ComputerPlayer, roundWinner);
+    }
 }
