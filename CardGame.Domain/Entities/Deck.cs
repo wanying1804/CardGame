@@ -14,6 +14,7 @@ public class Deck : IDeck
     
     private void InitializeDeck()
     {
+        Cards = new Queue<Card>();
         foreach (Suit suit in Enum.GetValues(typeof(Suit)))
         {
             for (int value = 1; value <= 13; value++)
@@ -42,7 +43,12 @@ public class Deck : IDeck
 
     public Card DealCard()
     {
-        throw new NotImplementedException();
+        if (Cards.Count == 0)
+        {
+            throw new InvalidOperationException("No cards available.");
+        }
+
+        return Cards.Dequeue();
     }
 
     public void Reset()
