@@ -42,7 +42,8 @@ namespace CardGame.API.Controllers
         [HttpGet("all-rounds-winner")]
         public IActionResult GetAllRoundsWinner()
         {
-            return Ok();
+            var winner = _gameManager.GetWinnerForAllRounds();
+            return Ok(new WinnerResponse(winner?.PlayerType));
         }
     }
 }
