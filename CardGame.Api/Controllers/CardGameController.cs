@@ -35,7 +35,8 @@ namespace CardGame.API.Controllers
         [HttpGet("all-scores")]
         public IActionResult GetCurrentScores()
         {
-            return Ok();
+            var scores = _gameManager.GetCurrentScores();
+            return Ok(new ScoreResponse(scores.PlayerScore, scores.ComputerScore));
         }
 
         [HttpGet("all-rounds-winner")]

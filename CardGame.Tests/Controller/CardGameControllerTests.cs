@@ -46,7 +46,7 @@ public class CardGameControllerTests
             { new Player(PlayerType.Human), new Card(Suit.Clubs, 2) },
             { new Player(PlayerType.Computer), new Card(Suit.Diamonds, 3) }
         };
-        var winner = new Player(PlayerType.Human);
+        var winner = new Player(PlayerType.Computer);
 
         _gameManagerMock.Setup(g => g.DealCards()).Returns(cards);
         _gameManagerMock.Setup(g => g.GetWinnerForCurrentRound()).Returns(winner);
@@ -61,5 +61,28 @@ public class CardGameControllerTests
 
         var response = Assert.IsType<PlayRoundResponse>(okResult.Value);
         Assert.Equal(winner.PlayerType, response.Winner);
+    }
+    
+    [Fact]
+    public void GetCurrentScores_ReturnsOkResponseWithScoreResponse()
+    {
+        // Arrange
+        var playerScore = 10;
+        var computerScore = 5;
+        var scores = new Scores(playerScore, computerScore);
+
+        _gameManagerMock.Setup(g => g.GetCurrentScores()).Returns(scores);
+
+        // Act
+        var result = _gameController.GetCurrentScores();
+
+        // Assert
+        Assert.IsType<OkObjectResult>(result);
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        Assert.IsType<ScoreResponse>(okResult.Value);
+
+        var response = Assert.IsType<ScoreResponse>(okResult.Value);
+        Assert.Equal(playerScore, response.PlayerScore);
+        Assert.Equal(computerScore, response.ComputerScore);
     }
 }
