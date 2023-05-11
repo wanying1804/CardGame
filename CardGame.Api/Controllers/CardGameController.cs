@@ -26,7 +26,10 @@ namespace CardGame.API.Controllers
         [HttpPost("play-round")]
         public IActionResult PlayOneRound()
         {
-            return Ok();
+            var cards = _gameManager.DealCards();
+            var winner = _gameManager.GetWinnerForCurrentRound();
+            
+            return Ok(new PlayRoundResponse(cards, winner));
         }
 
         [HttpGet("all-scores")]

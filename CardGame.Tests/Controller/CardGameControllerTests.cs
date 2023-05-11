@@ -1,6 +1,8 @@
 ﻿using CardGame.API.Controllers;
 using CardGame.API.Controllers.Responses;
 using CardGame.Application.Interfaces;
+using CardGame.Domain.Entities;
+using CardGame.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
@@ -18,7 +20,7 @@ public class CardGameControllerTests
     }
 
     [Fact]
-    public void ShuffleDeck_ReturnsOkResultWithSuccessMessage()
+    public void ShouldReturnsOkResultWithSuccessMessage_WhenResetAndShuffleTheDeck()
     {
         // Arrange
         _gameManagerMock.Setup(x => x.ShuffleDeck());
@@ -33,5 +35,31 @@ public class CardGameControllerTests
         var okResult = Assert.IsType<OkObjectResult>(result);
         var successMessage = Assert.IsType<SuccessMessage>(okResult.Value);
         Assert.Equal("Deck reset and shuffled successfully.", successMessage.Message);
+    }
+    
+    [Fact]
+    public void ShouldReturnsOkResponse_WhenPlayOneRound()
+    {
+        // Arrange
+        var cards = new Dictionary<Player, Card>
+        {
+            { new Player(PlayerType.Human), new Card(Suit.Clubs, 2) },
+            { new Player(PlayerType.Computer), new Card(Suit.Diamonds, 3) }
+        };
+        var winner = new Player(PlayerType.Human);
+
+        _gameManagerMock.Setup(g => g.DealCards()).Returns(cards);
+        _gameManagerMock.Setup(g => g.GetWinnerForCurrentRound()).Returns(winner);
+
+        // Act
+        var result = _gameController.PlayOneRound();
+
+        // Assert
+        Assert.IsType<OkObjectResult>(result);
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        Assert.IsType<PlayRoundResponse>(okResult.Value);
+
+        var response = Assert.IsType<PlayRoundResponse>(okResult.Value);
+        Assert.Equal(winner.PlayerType, response.Winner);
     }
 }
