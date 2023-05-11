@@ -1,4 +1,5 @@
-﻿using CardGame.Application.Interfaces;
+﻿using CardGame.API.Controllers.Responses;
+using CardGame.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CardGame.API.Controllers
@@ -17,7 +18,9 @@ namespace CardGame.API.Controllers
         [HttpPost("reset-shuffle")]
         public IActionResult ResetAndShuffleDeck()
         {
-            return Ok();
+            _gameManager.ResetGame();
+            _gameManager.ShuffleDeck();
+            return Ok(new SuccessMessage("Deck reset and shuffled successfully."));
         }
         
         [HttpPost("deal-cards")]
