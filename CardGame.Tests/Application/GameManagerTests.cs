@@ -1,4 +1,4 @@
-﻿using CardGame.Application.CardComparisonGame;
+﻿using CardGame.Application.CardGameService;
 using CardGame.Domain.Entities;
 using CardGame.Domain.Enums;
 using CardGame.Domain.Interfaces;

@@ -1,6 +1,6 @@
 ﻿using CardGame.Domain.Entities;
 
-namespace CardGame.Domain.Interfaces;
+namespace CardGame.Application.Interfaces;
 
 public interface IGameManager
 {
