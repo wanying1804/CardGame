@@ -44,6 +44,11 @@ public class GameManager: IGameManager
 
     public IDictionary<Player, Card> DealCards()
     {
+        if (_deck.Cards.Count <= 1)
+        {
+            throw new InvalidOperationException("No enough cards");
+        }
+        
         IDictionary<Player, Card> dealtCards = new Dictionary<Player, Card>();
         dealtCards[HumanPlayer] = _deck.DealCard();
         dealtCards[ComputerPlayer] = _deck.DealCard();
