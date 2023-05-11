@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CardGame.Contracts\CardGame.Contracts.csproj" />
     <ProjectReference Include="..\CardGame.Application\CardGame.Application.csproj" />
     <ProjectReference Include="..\CardGame.Infrastructure\CardGame.Infrastructure.csproj" />
   </ItemGroup>

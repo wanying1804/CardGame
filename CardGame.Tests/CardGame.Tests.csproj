@@ -26,7 +26,6 @@
     <ItemGroup>
       <ProjectReference Include="..\CardGame.Api\CardGame.Api.csproj" />
       <ProjectReference Include="..\CardGame.Application\CardGame.Application.csproj" />
-      <ProjectReference Include="..\CardGame.Contracts\CardGame.Contracts.csproj" />
       <ProjectReference Include="..\CardGame.Domain\CardGame.Domain.csproj" />
       <ProjectReference Include="..\CardGame.Infrastructure\CardGame.Infrastructure.csproj" />
     </ItemGroup>

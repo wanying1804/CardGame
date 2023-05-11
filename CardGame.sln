@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGame.Api", "CardGame.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGame.Application", "CardGame.Application\CardGame.Application.csproj", "{7F28D18B-668D-4232-AA57-F189064DED86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGame.Contracts", "CardGame.Contracts\CardGame.Contracts.csproj", "{8E0D0281-6762-466D-A671-0C3CD746F3E2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGame.Domain", "CardGame.Domain\CardGame.Domain.csproj", "{6C60AAAB-2A8F-490F-B41C-5CB4FDEACC8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGame.Infrastructure", "CardGame.Infrastructure\CardGame.Infrastructure.csproj", "{B1201997-56AD-4725-B7DE-3A3BEA091ED0}"
@@ -32,10 +30,6 @@ Global
 		{7F28D18B-668D-4232-AA57-F189064DED86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F28D18B-668D-4232-AA57-F189064DED86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F28D18B-668D-4232-AA57-F189064DED86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8E0D0281-6762-466D-A671-0C3CD746F3E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E0D0281-6762-466D-A671-0C3CD746F3E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E0D0281-6762-466D-A671-0C3CD746F3E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E0D0281-6762-466D-A671-0C3CD746F3E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6C60AAAB-2A8F-490F-B41C-5CB4FDEACC8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C60AAAB-2A8F-490F-B41C-5CB4FDEACC8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C60AAAB-2A8F-490F-B41C-5CB4FDEACC8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
