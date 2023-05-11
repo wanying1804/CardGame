@@ -23,25 +23,13 @@ namespace CardGame.API.Controllers
             return Ok(new SuccessMessage("Deck reset and shuffled successfully."));
         }
         
-        [HttpPost("deal-cards")]
-        public IActionResult DealCards()
+        [HttpPost("play-round")]
+        public IActionResult PlayOneRound()
         {
             return Ok();
         }
 
-        [HttpGet("get-round-winner")]
-        public IActionResult GetRoundWinner()
-        {
-            return Ok();
-        }
-
-        [HttpPost("reset")]
-        public IActionResult ResetGame()
-        {
-            return Ok();
-        }
-
-        [HttpGet("scores")]
+        [HttpGet("all-scores")]
         public IActionResult GetCurrentScores()
         {
             return Ok();
