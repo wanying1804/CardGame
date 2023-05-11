@@ -1,13 +1,53 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CardGame.Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
-namespace CardGame.Api.Controllers;
-
-[Route("[controller]")]
-public class CardGameController :ControllerBase
+namespace CardGame.API.Controllers
 {
-     [HttpGet]
-     public IActionResult ListDinners()
-     {
-          return Ok(Array.Empty<string>());
-     }
+    [ApiController]
+    [Route("api/[controller]")]
+    public class GameController : ControllerBase
+    {
+        private readonly IGameManager _gameManager;
+
+        public GameController(IGameManager gameManager)
+        {
+            _gameManager = gameManager;
+        }
+
+        [HttpPost("reset-shuffle")]
+        public IActionResult ResetAndShuffleDeck()
+        {
+            return Ok();
+        }
+        
+        [HttpPost("deal-cards")]
+        public IActionResult DealCards()
+        {
+            return Ok();
+        }
+
+        [HttpGet("get-round-winner")]
+        public IActionResult GetRoundWinner()
+        {
+            return Ok();
+        }
+
+        [HttpPost("reset")]
+        public IActionResult ResetGame()
+        {
+            return Ok();
+        }
+
+        [HttpGet("scores")]
+        public IActionResult GetCurrentScores()
+        {
+            return Ok();
+        }
+
+        [HttpGet("all-rounds-winner")]
+        public IActionResult GetAllRoundsWinner()
+        {
+            return Ok();
+        }
+    }
 }

@@ -10,8 +10,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddScoped<IGameManager, GameManager>();
-        services.AddScoped<IDeck, Deck>();
+        services.AddSingleton<IGameManager, GameManager>();
+        services.AddSingleton<IDeck, Deck>();
         return services;
     }
 }
